@@ -34,6 +34,14 @@ export default defineEventHandler(async (): Promise<Riddle[]> => {
     }
   ]
 
+  riddles.forEach(r => {
+    if(r.effectiveDate < new Date()) {
+      r.isAvailable = true
+    } else {
+      r.isAvailable = false
+    }
+  });
+
   return riddles;
 })
 

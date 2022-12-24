@@ -7,4 +7,5 @@ export type Riddle = {
   effectiveDate: Date,
   expirationDate: Date,
   isSolved: boolean
+  isAvailable: boolean
 }

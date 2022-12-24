@@ -1,6 +1,6 @@
 import { ComputedRef } from 'vue'
 
-type Timer = {
+export type Timer = {
   hours: number,
   minutes: number,
   seconds: number,

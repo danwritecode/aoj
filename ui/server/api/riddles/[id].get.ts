@@ -41,6 +41,12 @@ export default defineEventHandler(async (event): Promise<Riddle> => {
 
   riddle.story = marked.parse(riddle.story)
 
+  if(riddle.effectiveDate < new Date()) {
+    riddle.isAvailable = true
+  } else {
+    riddle.isAvailable = false
+  }
+
   return riddle
 })
 
