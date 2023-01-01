@@ -4,8 +4,8 @@ export type Riddle = {
   title: string,
   story: string,
   answer: string,
-  effectiveDate: Date,
-  expirationDate: Date,
+  effective: Date,
+  expiration: Date,
   isSolved: boolean
   isAvailable: boolean
 }

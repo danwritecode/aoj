@@ -1,6 +1,6 @@
 <template>
   <ContainerNarrow class="pt-20">
-    <div class="flex items-center space-x-3">
+    <div v-if="timer.hours > 0" class="flex items-center space-x-3">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-gray-500">
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
@@ -44,7 +44,6 @@
 <script setup lang="ts">
 import { Riddle } from '../models/RiddlesResponse'
 import { differenceInSeconds } from 'date-fns'
-import { Timer } from '../composables/useTimer'
 
 const route = useRoute()
 const riddleId = route.params.id
@@ -55,10 +54,15 @@ if(!riddle.value?.isAvailable) {
   navigateTo("/")
 }
 
+if(riddleError.value) {
+  alert("Whoops, something went wrong when getting that riddle")
+  navigateTo("/")
+}
+
 // TIMER
 const secondsUntilExpiry = ref<number>()
 if(riddle.value) {
-  secondsUntilExpiry.value = differenceInSeconds(new Date(riddle.value.expirationDate), new Date)
+  secondsUntilExpiry.value = differenceInSeconds(new Date(riddle.value.expiration), new Date)
 }
 
 const timer = useTimer(secondsUntilExpiry.value!)
