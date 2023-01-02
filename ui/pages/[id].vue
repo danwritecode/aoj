@@ -19,15 +19,15 @@
       </span>
     </div>
     <div v-else-if="!riddle?.isSolved && timer.hours < 24">
-      <div class="mt-6 flex items-end space-x-2">
-        <div class="w-full flex space-x-2">
+      <div class="mt-6 sm:flex items-end sm:space-x-2">
+        <div class="w-full sm:flex sm:space-x-2">
           <div class="w-full">
             <label for="answer" class="block text-sm font-medium text-gray-700">Answer</label>
             <div class="mt-1">
               <input v-model="answer" type="text" name="answer" id="answer" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 transition-hover-300" placeholder="Super smart answer">
             </div>
           </div>
-          <div class="w-full">
+          <div class="mt-2 sm:mt-0 w-full">
             <label v-if="apiKey === ''" for="api-key" class="block text-sm font-medium text-gray-700">API Key</label>
             <label v-else for="api-key" class="block text-sm font-medium text-gray-700">API Key (we cached it)</label>
             <div class="relative mt-1">
@@ -46,7 +46,7 @@
             </div>
           </div>
         </div>
-        <SubmitButton @submit="submitAnswer()" submit-text="Submit" color="teal" size="lg" :is-valid-state="!answerIsError && answer !== '' && apiKey !== ''" :submit-loading="answerIsLoading" />
+        <SubmitButton @submit="submitAnswer()" class="mt-2 sm:mt-0" submit-text="Submit" color="teal" size="lg" :is-valid-state="!answerIsError && answer !== '' && apiKey !== ''" :submit-loading="answerIsLoading" />
       </div>
 
       <div v-if="answerIsCorrect" class="mt-4 rounded-md bg-green-50 p-4">
