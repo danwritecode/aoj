@@ -1,32 +1,28 @@
-import { Riddle } from '../../../models/RiddlesResponse'
-import { $fetch, FetchError } from 'ohmyfetch'
+import { RiddleAnswer } from '../../../../models/RiddlesAnswerResponse'
+import { $fetch } from 'ohmyfetch'
+import { zh, z } from 'h3-zod';
 
 const config = useRuntimeConfig()
 
-export default defineEventHandler(async (event): Promise<Riddle> => {
+export default defineEventHandler(async (event): Promise<RiddleAnswer> => {
+  const cookies = parseCookies(event)
+  const apiKey = cookies.apiKey
+
   const id = event.context.params.id
-  
 
-  try {
-    const riddle = await $fetch<Riddle>(config.apiBase + "/riddles/" + id, {
-      method: "PUT",
-      body: {
-        answer: "foo"
-      }
-    })
+  const body = await zh.useValidatedBody(event, z.object({
+    answer: z.string()
+  }))
 
-    if (riddle === null) {
-      throw createError({ statusCode: 500, message: "Failed to get riddle"})
+  const answerRes = await $fetch<RiddleAnswer>(config.apiBase + "/riddles/answers/" + id, {
+    method: "PUT",
+    body: {
+      answer: body.answer
+    },
+    headers: {
+      "x-api-key": apiKey
     }
-    
-    if(new Date(riddle.effective) < new Date()) {
-      riddle.isAvailable = true
-    } else {
-      riddle.isAvailable = false
-    }
+  })
 
-    return riddle
-  } catch(er) {
-    throw createError({ statusCode: 500, message: "Failed to get riddles"})
-  }
+  return answerRes
 })
