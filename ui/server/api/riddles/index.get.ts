@@ -4,6 +4,8 @@ import { $fetch, FetchError } from 'ohmyfetch'
 const config = useRuntimeConfig()
 
 export default defineEventHandler(async (): Promise<Riddle[]> => {
+  console.log(config.apiBase)
+
   const riddles = await $fetch<Riddle[]>(config.apiBase + "/riddles")
 
   if (riddles === null) {
