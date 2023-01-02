@@ -46,7 +46,7 @@
             </div>
           </div>
         </div>
-        <SubmitButton @submit="submitAnswer()" class="mt-2 sm:mt-0" submit-text="Submit" color="teal" size="lg" :is-valid-state="!answerIsError && answer !== '' && apiKey !== ''" :submit-loading="answerIsLoading" />
+        <SubmitButton @submit="submitAnswer()" class="mt-4 sm:mt-0" submit-text="Submit" color="teal" size="lg" :is-valid-state="!answerIsError && answer !== '' && apiKey !== ''" :submit-loading="answerIsLoading" />
       </div>
 
       <div v-if="answerIsCorrect" class="mt-4 rounded-md bg-green-50 p-4">

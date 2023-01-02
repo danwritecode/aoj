@@ -14,7 +14,7 @@
       </span>
     </div> 
 
-    <div class="col-span-8 order-2">
+    <div class="col-span-8 order-2 text-center">
       <NuxtLink v-if="riddle.isAvailable" :to="'/' + riddle.id" class="text-gray-700 hover:text-teal-700 transition-hover-300">{{ riddle.title }}</NuxtLink>
       <span v-else :to="'/' + riddle.id" class="text-gray-400 cursor-not-allowed">{{ riddle.title }}</span>
     </div> 
