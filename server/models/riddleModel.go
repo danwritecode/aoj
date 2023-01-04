@@ -9,4 +9,5 @@ type Riddle struct {
 	Expiration string `json:"expiration"`
 	Story      string `json:"story"`
 	IsSolved   int    `json:"isSolved"`
+	SolvedText string `json:"solvedText"`
 }
