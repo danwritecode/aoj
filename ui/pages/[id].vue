@@ -7,8 +7,8 @@
       <p class="text-3xl text-gray-700 font-bold">{{ timer.hours }}:{{ timer.minutes }}:{{ timer.seconds }}</p>
     </div>
     <h1 class="mt-5 text-2xl font-medium text-gray-700">{{ riddle?.title }}</h1>
-    <div class="mt-4 text-gray-600" v-html="riddle?.story"></div>
-    <p class="mt-12 text-gray-600">{{ riddle?.riddle }}</p>
+    <div class="mt-4 text-gray-600 prose max-w-none" v-html="riddle?.story"></div>
+    <p v-if="!riddle?.isSolved" class="mt-12 text-gray-600">{{ riddle?.riddle }}</p>
 
     <div v-if="riddle?.isSolved" class="mt-6 flex items-center space-x-2">
       <p class="font-bold text-gray-700">You solved this riddle, here's your gold star:</p>
@@ -104,6 +104,8 @@
       <p class="font-bold text-gray-700">Hey not so fast, you're not on this day yet</p>
     </div>
 
+    <SuccessModal v-if="answerIsCorrect" title="Riddle solved!" :message="riddle?.solvedText!" button-text="Go home" />
+
   </ContainerNarrow>
 </template>
 
@@ -163,9 +165,7 @@ const submitAnswer = async () => {
   if(answerRes.value?.success) {
     answerIsCorrect.value = true
     answerIsLoading.value = false
-    setTimeout(() => {
-      refetchRiddle()
-    }, 3000);
+    refetchRiddle()
   } else {
     answerIsCorrect.value = false
     answerIsLoading.value = false

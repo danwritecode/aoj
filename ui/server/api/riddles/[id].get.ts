@@ -1,5 +1,6 @@
 import { Riddle } from '../../../models/RiddlesResponse'
 import { $fetch, FetchError } from 'ohmyfetch'
+import { marked } from 'marked'
 
 const config = useRuntimeConfig()
 
@@ -17,6 +18,9 @@ export default defineEventHandler(async (event): Promise<Riddle> => {
   } else {
     riddle.isAvailable = false
   }
+
+  riddle.story = marked(riddle.story)
+  riddle.solvedText = marked(riddle.solvedText)
 
   return riddle
 })
