@@ -12,7 +12,14 @@ export default defineEventHandler(async (): Promise<Riddle[]> => {
     throw createError({ statusCode: 500, message: "Failed to get riddles"})
   }
 
+
   riddles.forEach(r => {
+    console.log("Effective date renders as:")
+    console.log(new Date(r.effective))
+
+    console.log("current date renders as:")
+    console.log(new Date())
+
     if(new Date(r.effective) < new Date()) {
       r.isAvailable = true
     } else {

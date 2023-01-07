@@ -7,7 +7,7 @@
         </svg>
       </span>
       <div v-else-if="isCurrentDay">
-        <span v-if="secondsUntilExpiry > 0" class="block font-bold">{{ timer.hours }}:{{ timer.minutes }}:{{ timer.seconds }}</span>
+        <span v-if="secondsUntilExpiry > 0" class="block font-bold text-gray-900">{{ timer.hours }}:{{ timer.minutes }}:{{ timer.seconds }}</span>
         <span v-else class="block font-bold text-red-600">00:00:00</span>
       </div>
       <span v-else class="block">
