@@ -15,12 +15,6 @@ export default defineEventHandler(async (): Promise<Riddle[]> => {
     const currentDate = new Date()
     currentDate.setHours(currentDate.getHours() - 5)
 
-    console.log("Effective date renders as:")
-    console.log(new Date(r.effective))
-
-    console.log("current date renders as:")
-    console.log(currentDate)
-
     if(new Date(r.effective) < currentDate) {
       r.isAvailable = true
     } else {

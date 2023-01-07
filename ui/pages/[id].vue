@@ -1,5 +1,5 @@
 <template>
-  <ContainerNarrow class="pt-20">
+  <ContainerNarrow class="py-20">
     <div v-if="timer.hours > 0 && !riddle?.isSolved" class="flex items-center space-x-3">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-gray-500">
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -26,14 +26,14 @@
           <div class="w-full">
             <label for="answer" class="block text-sm font-medium text-gray-700">Answer</label>
             <div class="mt-1">
-              <input v-model="answer" type="text" name="answer" id="answer" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 transition-hover-300" placeholder="Super smart answer">
+              <input v-model="answer" type="text" name="answer" id="answer" autocomplete="off" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 transition-hover-300" placeholder="Super smart answer">
             </div>
           </div>
           <div class="mt-2 sm:mt-0 w-full">
             <label v-if="apiKey === ''" for="api-key" class="block text-sm font-medium text-gray-700">API Key</label>
             <label v-else for="api-key" class="block text-sm font-medium text-gray-700">API Key (we cached it)</label>
             <div class="relative mt-1">
-              <input v-model="apiKey" :type="apiKeyInputShow" name="api-key" id="api-key" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 transition-hover-300" placeholder="Super smart answer">
+              <input v-model="apiKey" :type="apiKeyInputShow" name="api-key" id="api-key" autocomplete="off" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 transition-hover-300" placeholder="Super smart answer">
               <button v-if="apiKeyInputShow === 'password'" @click="apiKeyInputShow = 'text'" class="absolute inset-y-0 right-0 flex items-center pr-3 focus:outline-none">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-500 hover:text-gray-900 transition-hover-300">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
