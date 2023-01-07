@@ -21,6 +21,7 @@ export default defineEventHandler(async (event): Promise<Riddle> => {
 
   riddle.story = marked(riddle.story)
   riddle.solvedText = marked(riddle.solvedText)
+  riddle.riddle = marked(riddle.riddle)
 
   return riddle
 })

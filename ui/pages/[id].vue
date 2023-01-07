@@ -8,7 +8,9 @@
     </div>
     <h1 class="mt-5 text-2xl font-medium text-gray-700">{{ riddle?.title }}</h1>
     <div class="mt-4 text-gray-600 prose max-w-none" v-html="riddle?.story"></div>
-    <p v-if="!riddle?.isSolved" class="mt-12 text-gray-600">{{ riddle?.riddle }}</p>
+
+    <h2 class="mt-6 font-medium">Riddle</h2>
+    <div v-if="!riddle?.isSolved" class="text-gray-600 prose max-w-none" v-html="riddle?.riddle"></div>
 
     <div v-if="riddle?.isSolved" class="mt-6 flex items-center space-x-2">
       <p class="font-bold text-gray-700">You solved this riddle, here's your gold star:</p>
