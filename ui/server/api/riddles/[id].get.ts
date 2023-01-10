@@ -13,7 +13,10 @@ export default defineEventHandler(async (event): Promise<Riddle> => {
     throw createError({ statusCode: 500, message: "Failed to get riddle"})
   }
   
-  if(new Date(riddle.effective) < new Date()) {
+  const currentDate = new Date()
+  currentDate.setHours(currentDate.getHours() - 5)
+
+  if(new Date(riddle.effective) < currentDate) {
     riddle.isAvailable = true
   } else {
     riddle.isAvailable = false
